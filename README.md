@@ -35,6 +35,17 @@ HTTP Range paralelas.
 
 `PowerShell` `DISM` `oscdimg` `HTTP Range` `RunspacePool`
 
+### 📦 [topdesk-ativos-nao-devolvidos](https://github.com/JonatasAlves21/topdesk-ativos-nao-devolvidos)
+Relatório semanal de equipamentos não devolvidos a partir da API do TOPdesk. Recupera
+pelo histórico de cada ativo a data da mudança de status e o último centro de custo,
+gera um Excel com resumo executivo e o publica no SharePoint via Microsoft Graph, com
+os segredos injetados pelo 1Password CLI. Um watchdog no Power Automate avisa quando
+o relatório não é atualizado.
+**Resultado medido:** a execução caiu de **10min23 para 1min28** (~7×) com um teto
+na varredura do histórico de cada ativo.
+
+`Node.js` `API REST` `Microsoft Graph` `ExcelJS` `Power Automate` `1Password CLI`
+
 ---
 
 ## Como eu trabalho
