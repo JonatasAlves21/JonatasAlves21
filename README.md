@@ -15,36 +15,39 @@ scripts e fluxos que rodam sozinhos, com log e resultado medido.
 
 ## Projetos em destaque
 
-### 🧹 [limpeza-disco](https://github.com/JonatasAlves21/limpeza-disco)
-Script PowerShell para chamados de "disco cheio / computador lento". Diagnostica em
-modo somente leitura, limpa com confirmação etapa a etapa (ou em modo automático para
-MDM) e gera log, JSON, CSV e um HTML pronto para o chamado.
-**Resultado medido:** espaço livre de **22,75 GB → 44,58 GB** em atendimento real,
-sem apagar documentos do usuário.
+### 🧹 [Limpeza de disco](https://github.com/JonatasAlves21/limpeza-disco)
+Para chamados de "disco cheio" ou "computador lento". Primeiro o script mostra o que
+está ocupando o disco, sem apagar nada. Depois limpa etapa por etapa, pedindo
+confirmação em cada uma (ou sozinho, quando roda pela ferramenta de gestão das
+máquinas), e no fim gera um relatório pronto para colar no chamado.
+**Resultado medido:** num atendimento real, o espaço livre foi de **22,75 GB para
+44,58 GB**, sem apagar nenhum documento do usuário.
 
 `PowerShell` `System.IO` `DISM` `Windows`
 
-### 💿 [windows-imaging-toolkit](https://github.com/JonatasAlves21/windows-imaging-toolkit)
-Transforma um SSD Ventoy em drive de formatação que já instala o Windows 11
-atualizado e com driver de rede: baixa driver packs oficiais Dell/Lenovo, filtra os
-críticos, aplica o cumulative update do Microsoft Update Catalog e remonta a ISO.
-Pacotes conferidos por SHA1 e área de trabalho restrita a administradores.
-**Resultados medidos:** ISO de **9,29 GB** já na build de ago/2026 com 241 MB de
-drivers embutidos; download de driver pack de **182 KB/s → 11,9 MB/s** com faixas
-HTTP Range paralelas.
+### 💿 [Imagem do Windows 11 atualizada](https://github.com/JonatasAlves21/windows-imaging-toolkit)
+Prepara o SSD de formatação para instalar o Windows 11 já atualizado e com driver de
+rede. Assim a máquina formatada não fica sem internet nem passa horas no Windows
+Update. Baixa os drivers oficiais da Dell e da Lenovo, separa os essenciais, aplica a
+última atualização da Microsoft na imagem e gera a ISO nova, conferindo cada pacote
+baixado.
+**Resultados medidos:** ISO de **9,29 GB** já na versão de ago/2026, com 241 MB de
+drivers embutidos; download dos pacotes de driver de **182 KB/s para 11,9 MB/s**
+usando várias conexões em paralelo.
 
 `PowerShell` `DISM` `oscdimg` `HTTP Range` `RunspacePool`
 
-### 📦 [topdesk-ativos-nao-devolvidos](https://github.com/JonatasAlves21/topdesk-ativos-nao-devolvidos)
-Relatório semanal de equipamentos não devolvidos a partir da API do TOPdesk. Recupera
-pelo histórico de cada ativo a data da mudança de status e o último centro de custo,
-gera um Excel com resumo executivo e o publica no SharePoint via Microsoft Graph, com
-os segredos injetados pelo 1Password CLI. Um watchdog no Power Automate avisa quando
-o relatório não é atualizado.
-**Resultado medido:** a execução caiu de **10min23 para 1min28** (~7×) com um teto
-na varredura do histórico de cada ativo.
+### 📦 [Relatório de equipamentos não devolvidos](https://github.com/JonatasAlves21/topdesk-ativos-nao-devolvidos)
+Toda segunda-feira, mostra à gestão quantos notebooks e celulares de ex-colaboradores
+ainda não foram devolvidos para a TI, de quais centros de custo e estados, e há
+quanto tempo. Lê os dados da plataforma de service desk pela API, monta um Excel com
+o resumo e publica no SharePoint. As senhas ficam num cofre de senhas, e um fluxo do
+Power Automate avisa se o relatório não for atualizado.
+**Resultado medido:** a execução caiu de **10min23 para 1min28** (cerca de 7× mais
+rápido) depois de limitar quantas páginas do histórico de cada equipamento o script
+lê.
 
-`Node.js` `API REST` `Microsoft Graph` `ExcelJS` `Power Automate` `1Password CLI`
+`Node.js` `API REST` `Microsoft Graph` `ExcelJS` `Power Automate` `Cofre de senhas`
 
 ---
 
